@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sketch-container{
+    width: 700px;
+    height: 700px;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sketch-box{
+    width: 43.625px;
+    height: 43.625px;
+    border: 1px solid black;
+}
