@@ -1,6 +1,7 @@
 const sketchContainer = document.querySelector('.sketch-container');
 let isHolding = false;
 
+//Changing Colors
 function colorToBlack() {
         sketchContainer.addEventListener('mousedown', (e) => {
             e.preventDefault();
@@ -21,8 +22,49 @@ function colorToBlack() {
                 }
             }
         })
-    
-    
+}
+
+function progressiveColorToBlack(){
+    let rgb = 229.5;
+    sketchContainer.addEventListener('mousedown', (e) => {
+        isHolding = true;
+        e.preventDefault();
+        if (rgb >= 0){
+            if (e.target.classList.contains('sketch-box')){
+                e.target.style.backgroundColor = `rgb(${rgb}, ${rgb}, ${rgb})`;
+                rgb -= 25.5
+            }
+        }
+        else {
+            rgb = 229.5;
+            if (e.target.classList.contains('sketch-box')) {
+                e.target.style.backgroundColor = `rgb(${rgb}, ${rgb}, ${rgb})`;
+                rgb -= 25.5
+            }
+        }
+    })  
+
+    sketchContainer.addEventListener('mouseup', (e) => {
+        isHolding = false;
+    })
+
+    sketchContainer.addEventListener('mouseover', (e) => {
+        if (isHolding){
+            if (rgb >= 0){
+                if (e.target.classList.contains('sketch-box')){
+                    e.target.style.backgroundColor = `rgb(${rgb}, ${rgb}, ${rgb})`;
+                    rgb -= 25.5
+                }
+            }
+            else {
+                rgb = 229.5;
+                if (e.target.classList.contains('sketch-box')) {
+                    e.target.style.backgroundColor = `rgb(${rgb}, ${rgb}, ${rgb})`;
+                    rgb -= 25.5
+                }
+            }
+        }
+    })  
 }
 
 function colorToRandom(){
@@ -75,6 +117,29 @@ function eraseColor(){
         })
 }
 
+function pickColor(e){
+    let getColor = pickColorButton.value;
+    sketchContainer.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isHolding = true;
+        if (e.target.classList.contains('sketch-box')) {
+            e.target.style.backgroundColor = `${getColor}`;
+        }
+    });
+    
+    sketchContainer.addEventListener('mouseup', () => {
+        isHolding = false;
+    })
+    
+    sketchContainer.addEventListener('mouseover', (e) => {
+        if(isHolding) {
+            if (e.target.classList.contains('sketch-box')) {
+                e.target.style.backgroundColor = `${getColor}`;
+            }
+        }
+    })
+}
+
 
 
 function clearGrid(e){
@@ -84,6 +149,7 @@ function clearGrid(e){
         })
 }
 
+// Button Events
 let blackButton = document.querySelector('.black-button');
 blackButton.addEventListener('click',colorToBlack);
 
@@ -96,9 +162,18 @@ eraserButton.addEventListener('click', eraseColor);
 let clearGridButton = document.querySelector('.clear-button');
 clearGridButton.addEventListener('click', clearGrid);
 
+let darkenButton = document.querySelector('.darken-button');
+darkenButton.addEventListener('click', progressiveColorToBlack);
+
+let pickColorButton = document.querySelector('.pick-color-button');
+pickColorButton.addEventListener("input", pickColor)
+
+//pickColorButton = document.querySelector('click')
+
 let boxes;
 let getContainerSize = window.getComputedStyle(sketchContainer).getPropertyValue('width');
 let containerSize = parseInt(getContainerSize);
+
 
 
 //Create new grid

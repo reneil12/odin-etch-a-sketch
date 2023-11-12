@@ -5,22 +5,65 @@
 }
 
 body{
-    background-color: rgb(236, 230, 230);
-    display: flex;
-    flex-direction: column;
+    background-color: lightcyan;
 }
 
-.sketch-button-container{
+.sketch-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    font-size: 45px;
+    margin: 20px 0;
+}
+
+.sketch-section{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 100px;
 }
-.sketch-container{
+
+.sketch-button-container{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid black;
+    border-radius: 10px;
+    gap: 30px;
+    background-color: white;
+
+    
+}
+
+.sketch-button-container > button, input{
+    width: 100px;
+    height: 50px;
+}
+
+.sketch-button-container > input{
+    padding: 10px;
+}
+
+.sketch-border{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 600px;
     height: 600px;
+    background-color: black;
+}
+
+
+.sketch-container{
+    width: 590px;
+    height: 590px;
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
